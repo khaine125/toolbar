@@ -32,7 +32,7 @@ li:before{
    height: 36px;
    width: 36px;
    background-image: url(../ikone/toolbar-btn-hyperlink.svg);
-}*/
+}
 
 li span {
     color: #fff;
@@ -42,7 +42,7 @@ li span {
     line-height: 40px;
 }
 
-/*#group1 > li:nth-child(1) {
+#group1 > li:nth-child(1) {
    list-style: none;
 }
 
