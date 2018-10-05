@@ -1,0 +1,84 @@
+#editorToolbar {
+	background: #f2f2f2;
+    width: 100%;
+    height: 40px;
+}
+
+ul {
+	height: 200px;
+    border: 1px solid #000;
+    width: 200px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+li {
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    background-color: grey;
+}
+
+
+/*li{
+   list-style: none;
+}
+
+li:before{
+   content: '';
+   display: inline-block;
+   height: 36px;
+   width: 36px;
+   background-image: url(../ikone/toolbar-btn-hyperlink.svg);
+}*/
+
+li span {
+    color: #fff;
+    vertical-align: middle;
+    height: 100%;
+    display: block;
+    line-height: 40px;
+}
+
+/*#group1 > li:nth-child(1) {
+   list-style: none;
+}
+
+#group1 > li:nth-child(1):before{
+   content: '';
+   display: inline-block;
+   height: 36px;
+   width: 36px;
+   background-image: url(../ikone/toolbar-btn-hyperlink.svg);
+}
+
+#group1 > li:nth-child(1) {
+	content: '';
+	list-style: url('../ikone/toolbar-btn-hyperlink.svg');
+	width: 36px;
+  	height: 30px;
+}
+
+#editorToolbar > ul:nth-child(1) {
+	position: relative;
+	float: left;
+	left: 0%;
+}
+
+#editorToolbar > ul:nth-child(2) {
+	left: 20%;
+}
+
+#editorToolbar > ul:nth-child(3) {
+	left: 40%;
+}
+
+#editorToolbar > ul:nth-child(4) {
+	left: 60%;
+}
+
+#editorToolbar > ul:nth-child(5) {
+	left: 80%;
+}*/
