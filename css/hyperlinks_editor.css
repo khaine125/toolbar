@@ -16,6 +16,11 @@ li {
 	float: left;
 }
 
+li:hover {
+	background: darkcyan;
+	border-radius: 4px;
+}
+
 #group1 {
     width: 10%;
 	height: 40px;
@@ -75,69 +80,110 @@ li {
 	left: 13px;
 }
 
-li:hover {
-	background: darkcyan;
-	border-radius: 4px;
-}
-
-
-/*li{
-   list-style: none;
-}
-
-li:before{
-   content: '';
-   display: inline-block;
-   height: 36px;
-   width: 36px;
-   background-image: url(../ikone/toolbar-btn-hyperlink.svg);
-}
-
-li span {
-    color: #fff;
-    vertical-align: middle;
-    height: 100%;
-    display: block;
-    line-height: 40px;
-}
-
-#group1 > li:nth-child(1) {
-   list-style: none;
-}
-
-#group1 > li:nth-child(1):before{
-   content: '';
-   display: inline-block;
-   height: 36px;
-   width: 36px;
-   background-image: url(../ikone/toolbar-btn-hyperlink.svg);
-}
-
-#group1 > li:nth-child(1) {
-	content: '';
-	list-style: url('../ikone/toolbar-btn-hyperlink.svg');
-	width: 36px;
-  	height: 30px;
-}
-
-#editorToolbar > ul:nth-child(1) {
-	position: relative;
+#group2 li span {
+	font-family: Calibri;
+	font-size: 12px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #555555;
 	float: left;
-	left: 0%;
+	top: 12px;
+	left: 10px;
+	position: relative;
 }
 
-#editorToolbar > ul:nth-child(2) {
-	left: 20%;
+#group3 {
+	width: 20%;
+	height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	border-right: 1px solid black;
 }
 
-#editorToolbar > ul:nth-child(3) {
-	left: 40%;
+#group3 li {
+    height: 40px;
+	width: 40px;
 }
 
-#editorToolbar > ul:nth-child(4) {
-	left: 60%;
+#group3 li img {
+    position: relative;
+	top: 12px;
+	left: 13px;
 }
 
-#editorToolbar > ul:nth-child(5) {
-	left: 80%;
-}*/
+#group4 {
+    width: 30%;
+	height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	border-right: 1px solid black;
+}
+
+#group4 li {
+    height: 40px;
+	padding: 0 5px;
+}
+/*probat display block*/
+#group4 li img {
+	position: relative;
+	top: 2px;
+}
+
+#group4 li span {
+	font-family: Calibri;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: -0.3px;
+	text-align: left;
+	color: #470a68;
+	top: -10.5px;
+	position: relative;
+	white-space: nowrap;
+}
+
+#group5 {
+    width: 10%;
+	height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	border-right: 1px solid black;
+}
+
+#group5 li {
+    height: 40px;
+	width: 100%;
+}
+/*probat display block*/
+#group5 li img {
+	position: absolute;
+	top: 2px;
+}
+
+#group5 li span {
+	font-family: Calibri;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: -0.3px;
+	text-align: left;
+	color: #470a68;
+	position: absolute;
+	left: 36px;
+	top: 10px;
+	white-space: nowrap;
+}
