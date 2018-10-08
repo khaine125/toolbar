@@ -72,6 +72,16 @@ li:hover {
 #group2 li {
     height: 40px;
 	width: 40px;
+	padding: 0 5px 0 0;
+}
+
+#group2 li:nth-child(1) {
+	min-width: 50px;
+	width: auto;
+}
+
+#group2 li:nth-child(3) span {
+	left: 0;
 }
 
 #group2 li img {
@@ -80,7 +90,7 @@ li:hover {
 	left: 13px;
 }
 
-#group2 li span {
+#group2 li span, #group3 li span {
 	font-family: Calibri;
 	font-size: 12px;
 	font-weight: normal;
@@ -93,6 +103,12 @@ li:hover {
 	float: left;
 	top: 12px;
 	left: 10px;
+	position: relative;
+}
+
+#group2 li input {
+	width: 36px;
+	top: 7px;
 	position: relative;
 }
 
@@ -111,10 +127,25 @@ li:hover {
 	width: 40px;
 }
 
+#group3 li:nth-child(1) {
+    min-width: 50px;
+	width: auto;
+}
+
+#group3 li:nth-child(2) {
+    min-width: 65px;
+	width: auto;
+}
+
 #group3 li img {
     position: relative;
 	top: 12px;
 	left: 13px;
+}
+
+#group3 li select {
+	position: relative;
+	top: 9px;
 }
 
 #group4 {
