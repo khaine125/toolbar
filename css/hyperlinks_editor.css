@@ -16,9 +16,14 @@ li {
 	float: left;
 }
 
-li:hover {
+#group1 li:hover, 
+#group2 li:nth-last-child(-n+4):hover, 
+#group3 li:nth-last-child(-n+2):hover, 
+#group4 li:hover, 
+#group5 li:hover {
 	background: darkcyan;
 	border-radius: 4px;
+	cursor: pointer;
 }
 
 #group1 {
@@ -36,7 +41,7 @@ li:hover {
 	width: 100%;
     position: absolute;
 }
-/*probat display block*/
+
 #group1 li img {
 	position: absolute;
 	top: 2px;
@@ -60,7 +65,7 @@ li:hover {
 }
 
 #group2 {
-	width: 20%;
+	width: 30%;
 	height: 40px;
     list-style: none;
     margin: 0;
@@ -162,7 +167,7 @@ li:hover {
     height: 40px;
 	padding: 0 5px;
 }
-/*probat display block*/
+
 #group4 li img {
 	position: relative;
 	top: 2px;
@@ -197,7 +202,7 @@ li:hover {
     height: 40px;
 	width: 100%;
 }
-/*probat display block*/
+
 #group5 li img {
 	position: absolute;
 	top: 2px;
