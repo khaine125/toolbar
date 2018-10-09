@@ -6,6 +6,7 @@
 		<meta http-equiv="Expires" content="0"/>
 		<meta http-equiv="pragma" content="no-cache"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<script src="./javascript/require.js"></script>
 		<link rel="stylesheet" href="./css/body.css"/>
 		<link rel="stylesheet" href="./css/hyperlinks_editor.css"/>
 	</head>
@@ -91,22 +92,18 @@
 			<div id="am-secondary-container"></div>
 		</div>
 		<script>
-			const backstop = require('backstopjs');
-			
 			require.config({
-				baseUrl: '<%= contextPath + scriptsPath %>',
+				baseUrl: './javascript',
 				waitSeconds: 0
 			});
 			
-			require(["modules/hyperlinks_editor"], function(editor) {
-				var CONTEXT_PATH = '<%= contextPath %>',
-					IMAGES_PATH = '<%= contextPath + imagesPath %>';
-					
-				editor.init({
-					contextPath: CONTEXT_PATH,
-					imagesPath: IMAGES_PATH
-				});
-			});
+			document.addEventListener('DOMContentLoaded', function () {
+				debugger;
+					require(["toolbar"], function(toolbar) {
+						toolbar.init('tet');
+					});
+				}
+			);
 		</script>
 	</body>
 </html>
