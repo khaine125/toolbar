@@ -12,84 +12,7 @@
 	</head>
 	<body>
 		<div id="editorToolbar">
-			<ul id="group1">
-				<li>
-					<img src="./ikone/toolbar-btn-hyperlink.svg" />
-					<span>All Hyperlinks</span>
-				</li>
-			</ul>
-			<ul id="group2">
-				<li>
-					<span>PAGES</span>
-				</li>
-				<li>
-					<input class="pages-input" type="text" />
-				</li>
-				<li>
-					<span>/ 3657</span>
-				</li>
-				<li>
-					<img src="./ikone/btn-first-page.svg" />
-				</li>
-				<li>
-					<img src="./ikone/btn-previous-page.svg" />
-				</li>
-				<li>
-					<img src="./ikone/btn-next-page.svg" />
-				</li>
-				<li>
-					<img src="./ikone/btn-last-page.svg" />
-				</li>
-			</ul>
-			<ul id="group3">
-				<li>
-					<span>ZOOM</span>
-				</li>
-				<li>
-					<select>
-						<option value="50">50%</option>
-						<option value="75">75%</option>
-						<option value="100">100%</option>
-						<option value="125">125%</option>
-						<option value="150">150%</option>
-						<option value="200">200%</option>
-					</select>
-				</li>
-				<li>
-					<img src="./ikone/btn-zoom-out.svg" />
-				</li>
-				<li>
-					<img src="./ikone/btn-zoom-in.svg" />
-				</li>
-			</ul>
-			<ul id="group4">
-				<li>
-					<img src="./ikone/toolbar-btn-pan.svg" />
-					<span>Pan</span>
-				</li>
-				<li>
-					<img src="./ikone/toolbar-btn-select-inactive.svg" />
-					<span>Select</span>
-				</li>
-				<li>
-					<img src="./ikone/toolbar-btn-source-hyperlink.svg" />
-					<span>Set Source</span>
-				</li>
-				<li>
-					<img src="./ikone/toolbar-btn-target-hyperlink.svg" />
-					<span>Set Target</span>
-				</li>
-			</ul>
-			<ul id="group5">
-				<li>
-					<img src="./ikone/toolbar-btn-link-target.svg" />
-					<span>Link Targets</span>
-				</li>
-			</ul>
-		</div>
-		<div id="editorContainer">
-			<div id="am-primary-container"></div>
-			<div id="am-secondary-container"></div>
+			
 		</div>
 		<script>
 			require.config({
@@ -99,11 +22,20 @@
 			
 			document.addEventListener('DOMContentLoaded', function () {
 				debugger;
-					require(["toolbar"], function(toolbar) {
-						toolbar.init('tet');
-					});
-				}
-			);
+				require(["toolbar"], function(toolbar) {
+					var configurationData = {};
+					var testElement = {
+						itemContainerId: 'group1',
+						source: './ikone/toolbar-btn-hyperlink.svg',
+						textLabel: 'All hyperlinks'
+					};
+					
+					configurationData.destinationElement = document.getElementById('editorToolbar');
+					configurationData.elementsData = new Array();
+					configurationData.elementsData.push(testElement);
+					toolbar.init(configurationData);
+				});
+			});
 		</script>
 	</body>
 </html>
