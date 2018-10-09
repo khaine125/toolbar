@@ -3,10 +3,7 @@ define(function() {
 		var imageElement, labelElement,
 			listItemContainer = document.createElement('li'),
 			imageSource = elementConfig.source,
-			textLabel = elementConfig.textLabel,
-			itemContainerId = elementConfig.itemContainerId;
-		
-		l
+			textLabel = elementConfig.textLabel;
 		
 		if (imageSource) {
 			imageElement = document.createElement('img');
@@ -20,9 +17,7 @@ define(function() {
 			listItemContainer.appendChild(labelElement);
 		}
 		
-		listContainer.appendChild(listItemContainer);
-		
-		return listContainer;
+		return listItemContainer;
 	};
 	
 	return {
@@ -30,6 +25,7 @@ define(function() {
 			var tempElementsContainer,
 				elementsContainer = data.destinationElement;
 				
+			this.listItems = new Array();
 			this.elementsData = data.elementsData;
 			tempElementsContainer = this.buildElements(data.elementsData);
 			
@@ -39,18 +35,29 @@ define(function() {
 		
 		buildElements: function(elementsData) {
 			var tempElementsContainer = document.createDocumentFragment()
-				unorderedListElements = new Array();
+				unorderedListElements = {},
+				self = this;;
 			
 			elementsData.map(function(element) {
-				var itemContainerId = element.itemContainerId
-					listContainer;
+				debugger;
+				var itemContainerId = element.itemContainerId,
+					listContainer = unorderedListElements[itemContainerId], 
+					listContainerItem;
 				
-				if (unorderedListElements[itemContainerId] === undefined) {
+				if (listContainer === undefined) {
 					listContainer = document.createElement('ul');
 					listContainer.id = itemContainerId;
+					unorderedListElements[itemContainerId] = listContainer;
 				}
 				
-				tempElementsContainer.appendChild(createListItem(element));
+				listContainerItem = createListItem(element);
+				self.listItems.push(listContainerItem);
+				listContainer.appendChild(listContainerItem);
+			});
+			
+			Object.keys(unorderedListElements).map(function(list) {
+				var unorderedListElement = unorderedListElements[list];
+				tempElementsContainer.appendChild(unorderedListElement);
 			});
 			
 			return tempElementsContainer;
