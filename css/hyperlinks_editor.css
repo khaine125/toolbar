@@ -26,6 +26,12 @@ li {
 	cursor: pointer;
 }
 
+#group1 li.selected,
+#group5 li.selected {
+	background: black;
+	border-radius: 4px;
+}
+
 #group1 {
     width: 10%;
 	height: 40px;

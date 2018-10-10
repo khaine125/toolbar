@@ -1,20 +1,65 @@
-define(function() {
-	function createListItem(elementConfig) {
-		var imageElement, labelElement,
+define(['helpers'], function(helpers) {
+	var createDropDownElement, createImageElement, createTextLabel, createListItem,
+		addEvent = helpers.addEvent,
+		eventEmitter = helpers.eventEmitter;
+	
+	function createInputElement() {
+		var inputElement = document.createElement('input');
+		inputElement.type = 'text';
+		
+		return inputElement;
+	}
+	
+	createDropDownElement = function(elementConfig, inputValuesKeys) {
+		var defaultValue = elementConfig.defaultValue,
+			inputValues = elementConfig.inputValues,
+			dropDownElement = document.createElement('select');
+		
+		inputValuesKeys.map(function(value) {
+			var option = document.createElement('option');
+			option.value = value;
+			option.text = inputValues[value];
+			dropDownElement.appendChild(option);
+		});
+		
+		dropDownElement.value = defaultValue;
+		
+		return dropDownElement;
+	};
+	
+	createImageElement = function(imageSource) {
+		var imageElement = document.createElement('img');
+		imageElement.src = imageSource;
+		
+		return imageElement;
+	};
+	
+	createTextLabel = function(textLabel) {
+		var labelElement = document.createElement('span');
+		labelElement.innerHTML = textLabel;
+		
+		return labelElement;
+	};
+	
+	createListItem = function(elementConfig) {
+		var inputValues = elementConfig.inputValues,
+			inputValuesKeys = inputValues ? Object.keys(inputValues) : {},
 			listItemContainer = document.createElement('li'),
 			imageSource = elementConfig.source,
 			textLabel = elementConfig.textLabel;
 		
 		if (imageSource) {
-			imageElement = document.createElement('img');
-			imageElement.src = imageSource;
-			listItemContainer.appendChild(imageElement);
+			listItemContainer.appendChild(createImageElement(imageSource));
 		}
 		
 		if (textLabel) {
-			labelElement = document.createElement('span');
-			labelElement.innerHTML = textLabel;
-			listItemContainer.appendChild(labelElement);
+			listItemContainer.appendChild(createTextLabel(textLabel));
+		}
+		
+		if (inputValues && inputValuesKeys.length === 0) {
+			listItemContainer.appendChild(createInputElement());
+		} else if (inputValues && inputValuesKeys.length > 0) {
+			listItemContainer.appendChild(createDropDownElement(elementConfig, inputValuesKeys));
 		}
 		
 		return listItemContainer;
@@ -25,24 +70,31 @@ define(function() {
 			var tempElementsContainer,
 				elementsContainer = data.destinationElement;
 				
-			this.listItems = new Array();
+			this.types = {
+				BUTTON: 'button'
+			};
+			
+			eventEmitter(this);
+			this.listItems = [];
 			this.elementsData = data.elementsData;
-			tempElementsContainer = this.buildElements(data.elementsData);
+			tempElementsContainer = this._buildElements(data.elementsData);
 			
 			elementsContainer.appendChild(tempElementsContainer);
-			console.log(data);
 		},
 		
-		buildElements: function(elementsData) {
-			var tempElementsContainer = document.createDocumentFragment()
+		destroy: function() {
+			
+		},
+		
+		_buildElements: function(elementsData) {
+			var tempElementsContainer = document.createElement('div'),
 				unorderedListElements = {},
-				self = this;;
+				self = this;
 			
 			elementsData.map(function(element) {
-				debugger;
 				var itemContainerId = element.itemContainerId,
 					listContainer = unorderedListElements[itemContainerId], 
-					listContainerItem;
+					listItemContainer, itemEvent;
 				
 				if (listContainer === undefined) {
 					listContainer = document.createElement('ul');
@@ -50,9 +102,19 @@ define(function() {
 					unorderedListElements[itemContainerId] = listContainer;
 				}
 				
-				listContainerItem = createListItem(element);
-				self.listItems.push(listContainerItem);
-				listContainer.appendChild(listContainerItem);
+				listItemContainer = createListItem(element);
+				listItemContainer.setAttribute('controlEventName', element.controlEventName);
+				//listItemContainer.setAttribute('controlEventName', element.controlEventName);
+				
+				/*if (element.controlEventName) {
+					itemEvent = addEvent(listItemContainer, 'click', function() {
+						self._setEventListener(listItemContainer, element);
+					});
+				}*/
+				
+				//self.listItems.push(listItemContainer);
+				//self.elementsCache[listItemContainer] = element;
+				listContainer.appendChild(listItemContainer);
 			});
 			
 			Object.keys(unorderedListElements).map(function(list) {
@@ -61,23 +123,19 @@ define(function() {
 			});
 			
 			return tempElementsContainer;
+		},
+		
+		_setEventListener: function(listItemContainer, element) {
+			var selectedElement = event.target;
+			debugger;
+			if (element.useToggle && selectedElement.className) {
+				selectedElement.className = '';
+			} else if (element.useToggle) {
+				selectedElement.className = 'selected';
+			}
+			
+			this.emit(element.controlEventName);
+			console.log('eto klino sam: ' + element.controlEventName);
 		}
 	};
 });
-
-/*
-{
-	itemContainerId: 'group1',
-	source: './ikone/toolbar-btn-hyperlink.svg',
-	textLabel: 'All hyperlinks'
-}
-*/
-
-/*
-<ul id="group1">
-	<li>
-		<img src="./ikone/toolbar-btn-hyperlink.svg" />
-		<span>All Hyperlinks</span>
-	</li>
-</ul>
-*/

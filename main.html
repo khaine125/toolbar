@@ -11,9 +11,7 @@
 		<link rel="stylesheet" href="./css/hyperlinks_editor.css"/>
 	</head>
 	<body>
-		<div id="editorToolbar">
-			
-		</div>
+		<div id="editorToolbar"></div>
 		<script>
 			require.config({
 				baseUrl: './javascript',
@@ -21,32 +19,27 @@
 			});
 			
 			document.addEventListener('DOMContentLoaded', function () {
-				debugger;
 				require(["toolbar"], function(toolbar) {
 					var configurationData = {elementsData: []};
-					var testElement = {
-						itemContainerId: 'group1',
-						source: './ikone/toolbar-btn-hyperlink.svg',
-						textLabel: 'All hyperlinks'
-					};
+					
 					configurationData.elementsData = [
-						{itemContainerId: 'group1', source: './ikone/toolbar-btn-hyperlink.svg', textLabel: 'All hyperlinks'},
+						{itemContainerId: 'group1', source: './ikone/toolbar-btn-hyperlink.svg', textLabel: 'All hyperlinks', controlEventName: 'all-hyperlinks', useToggle: true},
 						{itemContainerId: 'group2', textLabel: 'Pages'},
-						{itemContainerId: 'group2', textLabel: '123456'},
+						{itemContainerId: 'group2', inputValues: {}, controlEventName: ''},
 						{itemContainerId: 'group2', textLabel: '/ 2105'},
-						{itemContainerId: 'group2', source: './ikone/btn-first-page.svg'},
-						{itemContainerId: 'group2', source: './ikone/btn-previous-page.svg'},
-						{itemContainerId: 'group2', source: './ikone/btn-next-page.svg'},
-						{itemContainerId: 'group2', source: './ikone/btn-last-page.svg'},
+						{itemContainerId: 'group2', source: './ikone/btn-first-page.svg', controlEventName: ''},
+						{itemContainerId: 'group2', source: './ikone/btn-previous-page.svg', controlEventName: ''},
+						{itemContainerId: 'group2', source: './ikone/btn-next-page.svg', controlEventName: ''},
+						{itemContainerId: 'group2', source: './ikone/btn-last-page.svg', controlEventName: ''},
 						{itemContainerId: 'group3', textLabel: 'ZOOM'},
-						{itemContainerId: 'group3', textLabel: '1000%'},
-						{itemContainerId: 'group3', source: './ikone/btn-zoom-out.svg'},
-						{itemContainerId: 'group3', source: './ikone/btn-zoom-in.svg'},
-						{itemContainerId: 'group4', source: './ikone/toolbar-btn-pan.svg', textLabel: 'Pan'},
-						{itemContainerId: 'group4', source: './ikone/toolbar-btn-select-inactive.svg', textLabel: 'Select'},
-						{itemContainerId: 'group4', source: './ikone/toolbar-btn-source-hyperlink.svg', textLabel: 'Set Source'},
-						{itemContainerId: 'group4', source: './ikone/toolbar-btn-target-hyperlink.svg', textLabel: 'Set Target'},
-						{itemContainerId: 'group5', source: './ikone/toolbar-btn-link-target.svg', textLabel: 'Link Targets'}
+						{itemContainerId: 'group3', inputValues: {50: '50%', 75: '75%', 100: '100%', 125: '125%', 150: '150%', 200: '200%'}, defaultValue: 100, controlEventName: ''},
+						{itemContainerId: 'group3', source: './ikone/btn-zoom-out.svg', controlEventName: ''},
+						{itemContainerId: 'group3', source: './ikone/btn-zoom-in.svg', controlEventName: ''},
+						{itemContainerId: 'group4', source: './ikone/toolbar-btn-pan.svg', textLabel: 'Pan', controlEventName: '', useToggle: true},
+						{itemContainerId: 'group4', source: './ikone/toolbar-btn-select-inactive.svg', textLabel: 'Select', controlEventName: '', useToggle: true},
+						{itemContainerId: 'group4', source: './ikone/toolbar-btn-source-hyperlink.svg', textLabel: 'Set Source', controlEventName: ''},
+						{itemContainerId: 'group4', source: './ikone/toolbar-btn-target-hyperlink.svg', textLabel: 'Set Target', controlEventName: ''},
+						{itemContainerId: 'group5', source: './ikone/toolbar-btn-link-target.svg', textLabel: 'Link Targets', controlEventName: 'link-targets', useToggle: true}
 					];
 					
 					configurationData.destinationElement = document.getElementById('editorToolbar');
