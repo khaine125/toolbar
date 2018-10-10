@@ -1,14 +1,7 @@
 define(['helpers'], function(helpers) {
-	var createDropDownElement, createImageElement, createTextLabel, createListItem,
+	var createDropDownElement,
 		addEvent = helpers.addEvent,
 		eventEmitter = helpers.eventEmitter;
-	
-	function createInputElement() {
-		var inputElement = document.createElement('input');
-		inputElement.type = 'text';
-		
-		return inputElement;
-	}
 	
 	createDropDownElement = function(elementConfig, inputValuesKeys) {
 		var defaultValue = elementConfig.defaultValue,
@@ -27,67 +20,31 @@ define(['helpers'], function(helpers) {
 		return dropDownElement;
 	};
 	
-	createImageElement = function(imageSource) {
-		var imageElement = document.createElement('img');
-		imageElement.src = imageSource;
-		
-		return imageElement;
-	};
 	
-	createTextLabel = function(textLabel) {
-		var labelElement = document.createElement('span');
-		labelElement.innerHTML = textLabel;
-		
-		return labelElement;
-	};
-	
-	createListItem = function(elementConfig) {
-		var inputValues = elementConfig.inputValues,
-			inputValuesKeys = inputValues ? Object.keys(inputValues) : {},
-			listItemContainer = document.createElement('li'),
-			imageSource = elementConfig.source,
-			textLabel = elementConfig.textLabel;
-		
-		if (imageSource) {
-			listItemContainer.appendChild(createImageElement(imageSource));
-		}
-		
-		if (textLabel) {
-			listItemContainer.appendChild(createTextLabel(textLabel));
-		}
-		
-		if (inputValues && inputValuesKeys.length === 0) {
-			listItemContainer.appendChild(createInputElement());
-		} else if (inputValues && inputValuesKeys.length > 0) {
-			listItemContainer.appendChild(createDropDownElement(elementConfig, inputValuesKeys));
-		}
-		
-		return listItemContainer;
-	};
 	
 	return {
+		emitter: eventEmitter(this),
+		
 		init: function(data) {
 			var tempElementsContainer,
 				elementsContainer = data.destinationElement;
-				
-			this.types = {
-				BUTTON: 'button'
-			};
 			
-			eventEmitter(this);
 			this.listItems = [];
 			this.elementsData = data.elementsData;
 			tempElementsContainer = this._buildElements(data.elementsData);
 			
 			elementsContainer.appendChild(tempElementsContainer);
+			addEvent(elementsContainer, 'click', this._setClickListener.bind(this));
+			addEvent(elementsContainer, 'change', this._setChangeListener.bind(this));
+			addEvent(elementsContainer, 'keypress', this._setKeyPressListener.bind(this));
 		},
 		
 		destroy: function() {
-			
+			//ocistit, event emitter, event listener
 		},
 		
 		_buildElements: function(elementsData) {
-			var tempElementsContainer = document.createElement('div'),
+			var tempElementsContainer = document.createDocumentFragment();
 				unorderedListElements = {},
 				self = this;
 			
@@ -102,18 +59,13 @@ define(['helpers'], function(helpers) {
 					unorderedListElements[itemContainerId] = listContainer;
 				}
 				
-				listItemContainer = createListItem(element);
+				listItemContainer = self._createListItem(element);
 				listItemContainer.setAttribute('controlEventName', element.controlEventName);
-				//listItemContainer.setAttribute('controlEventName', element.controlEventName);
 				
-				/*if (element.controlEventName) {
-					itemEvent = addEvent(listItemContainer, 'click', function() {
-						self._setEventListener(listItemContainer, element);
-					});
-				}*/
+				if (element.useToggle) {
+					listItemContainer.setAttribute('useToggle', element.useToggle);
+				}
 				
-				//self.listItems.push(listItemContainer);
-				//self.elementsCache[listItemContainer] = element;
 				listContainer.appendChild(listItemContainer);
 			});
 			
@@ -125,17 +77,126 @@ define(['helpers'], function(helpers) {
 			return tempElementsContainer;
 		},
 		
-		_setEventListener: function(listItemContainer, element) {
-			var selectedElement = event.target;
-			debugger;
-			if (element.useToggle && selectedElement.className) {
-				selectedElement.className = '';
-			} else if (element.useToggle) {
-				selectedElement.className = 'selected';
+		_createListItem: function(elementConfig) {
+			var labelElement, imageElement, inputElement,
+				inputValues = elementConfig.inputValues,
+				inputValuesKeys = inputValues ? Object.keys(inputValues) : {},
+				listItemContainer = document.createElement('li'),
+				imageSource = elementConfig.source,
+				textLabel = elementConfig.textLabel,
+				type = elementConfig.type;
+			
+			if (imageSource) {
+				imageElement = document.createElement('img');
+				imageElement.src = imageSource;
+				
+				listItemContainer.appendChild(imageElement);
 			}
 			
-			this.emit(element.controlEventName);
-			console.log('eto klino sam: ' + element.controlEventName);
+			if (textLabel) {
+				labelElement = document.createElement('span');
+				labelElement.innerHTML = textLabel;
+				
+				listItemContainer.appendChild(labelElement);
+			}
+			
+			if (type) {
+				inputElement = document.createElement('input');
+				inputElement.type = type;
+				
+				listItemContainer.appendChild(inputElement);
+			}
+			
+			if (inputValues && inputValuesKeys.length > 0) {
+				listItemContainer.appendChild(createDropDownElement(elementConfig, inputValuesKeys));
+			}
+			
+			return listItemContainer;
+		},
+		
+		_getListItem: function(element) {
+			var tempElement = element;
+			
+			while (tempElement && tempElement.tagName.toLowerCase() !== 'li') {
+				tempElement = tempElement.parentElement;
+			}
+			
+			if (!tempElement) {
+				tempElement = element;
+			}
+			
+			return tempElement;
+		},
+		
+		_canUseKeyPress: function(element) {
+			return !(element.tagName.toLowerCase() === 'input' && element.type === 'text');
+		},
+		
+		_setKeyPressListener: function(evt) {
+			var controlEventName = '',
+				useToggle = '',
+				tempElement = evt.target,
+				value = tempElement.value;
+			
+			if (evt.keyCode !== 13 || this._canUseKeyPress(tempElement)) {
+				return;
+			}
+			
+			if (isNaN(value)) {
+				return;
+			}
+			
+			tempElement = this._getListItem(tempElement);
+				
+			controlEventName = tempElement.getAttribute('controlEventName');
+			controlEventName && this.emitter.emit(controlEventName, value);
+		},
+		
+		_setChangeListener: function(evt) {
+			var controlEventName = '',
+				useToggle = '',
+				tempElement = evt.target;
+			
+			if (this._canUseChange(tempElement)) {
+				return;
+			}
+			
+			tempElement = this._getListItem(tempElement);
+				
+			controlEventName = tempElement.getAttribute('controlEventName');
+			controlEventName && this.emitter.emit(controlEventName);
+		},
+		
+		_canUseChange: function(element) {
+			return element.tagName.toLowerCase() !== 'select';
+		},
+		
+		_setClickListener: function(evt) {
+			var controlEventName = '',
+				useToggle = '',
+				tempElement = evt.target;
+				
+			if (this._preventClick(tempElement)) {
+				return;
+			}
+			
+			tempElement = this._getListItem(tempElement);
+			
+			useToggle = tempElement.getAttribute('useToggle');
+			
+			if (useToggle && tempElement.className === '') {
+				tempElement.className = 'selected';
+			} else if (useToggle && tempElement.className === 'selected') {
+				tempElement.className = '';
+			}
+			
+			controlEventName = tempElement.getAttribute('controlEventName');
+			controlEventName && this.emitter.emit(controlEventName);
+		},
+		
+		_preventClick: function(element) {
+			var elementName = element.tagName;
+			return (elementName.toLowerCase() === 'input' && element.type === 'text') || elementName.toLowerCase() === 'select';
 		}
 	};
 });
