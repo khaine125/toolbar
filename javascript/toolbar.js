@@ -34,9 +34,9 @@ define(['helpers'], function(helpers) {
 			tempElementsContainer = this._buildElements(data.elementsData);
 			
 			elementsContainer.appendChild(tempElementsContainer);
-			addEvent(elementsContainer, 'click', this._setClickListener.bind(this));
-			addEvent(elementsContainer, 'change', this._setChangeListener.bind(this));
-			addEvent(elementsContainer, 'keypress', this._setKeyPressListener.bind(this));
+			addEvent(elementsContainer, 'click', this._clickHandler.bind(this));
+			addEvent(elementsContainer, 'change', this._changeHandler.bind(this));
+			addEvent(elementsContainer, 'keypress', this._keyPressHandler.bind(this));
 		},
 		
 		destroy: function() {
@@ -132,7 +132,7 @@ define(['helpers'], function(helpers) {
 			return !(element.tagName.toLowerCase() === 'input' && element.type === 'text');
 		},
 		
-		_setKeyPressListener: function(evt) {
+		_keyPressHandler: function(evt) {
 			var controlEventName = '',
 				useToggle = '',
 				tempElement = evt.target,
@@ -152,7 +152,7 @@ define(['helpers'], function(helpers) {
 			controlEventName && this.emitter.emit(controlEventName, value);
 		},
 		
-		_setChangeListener: function(evt) {
+		_changeHandler: function(evt) {
 			var controlEventName = '',
 				useToggle = '',
 				tempElement = evt.target;
@@ -171,7 +171,7 @@ define(['helpers'], function(helpers) {
 			return element.tagName.toLowerCase() !== 'select';
 		},
 		
-		_setClickListener: function(evt) {
+		_clickHandler: function(evt) {
 			var controlEventName = '',
 				useToggle = '',
 				tempElement = evt.target;
