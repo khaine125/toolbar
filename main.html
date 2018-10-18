@@ -1,0 +1,66 @@
+<%@ include file="../include/context.jsp" %>
+<%@ include file="../include/auth.jsp" %>
+
+<%@ page language="java" errorPage="../error/start.jsp" %>
+
+<%
+	String objectId = request.getParameter("id");
+%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hyperlinks editor</title>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="Expires" content="0"/>
+		<meta http-equiv="pragma" content="no-cache"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<script src="<%= contextPath + scriptsPath %>libs/require.js"></script>
+		<link rel="stylesheet" href="<%= contextPath + cssPath %>body.css" type="text/css"/>
+		<link rel="stylesheet" href="<%= contextPath + cssPath %>modules/document_editor_toolbar.css" type="text/css"/>
+	</head>
+	<body>
+		<div id="editorToolbar"></div>
+		<script>
+			require.config({
+				baseUrl: '<%= contextPath + scriptsPath %>modules',
+				paths: {
+					utils: '../utils'
+				},
+				waitSeconds: 0
+			});
+			
+			document.addEventListener('DOMContentLoaded', function () {
+				require(["document_editor_toolbar"], function(toolbar) {
+					var configurationData = {elementsData: []};
+					var imagesPath = '<%= contextPath + imagesPath %>',
+						imagesPathHyperlink = imagesPath + 'hyperlinks/';
+					
+					configurationData.elementsData = [
+						{itemContainerId: 'group1', imageSource: imagesPathHyperlink + 'toolbar-btn-hyperlink.svg', textLabel: 'All hyperlinks', controlEventName: 'all-hyperlinks', type: 'toggle'},
+						{itemContainerId: 'group2', textLabel: 'Pages'},
+						{itemContainerId: 'group2', controlEventName: '', type: 'text'},
+						{itemContainerId: 'group2', textLabel: '/ 2105'},
+						{itemContainerId: 'group2', imageSource: imagesPathHyperlink + 'btn-first-page.svg', controlEventName: ''},
+						{itemContainerId: 'group2', imageSource: imagesPathHyperlink + 'btn-previous-page.svg', controlEventName: ''},
+						{itemContainerId: 'group2', imageSource: imagesPathHyperlink + 'btn-next-page.svg', controlEventName: ''},
+						{itemContainerId: 'group2', imageSource: imagesPathHyperlink + 'btn-last-page.svg', controlEventName: ''},
+						{itemContainerId: 'group3', textLabel: 'ZOOM'},
+						{itemContainerId: 'group3', inputValues: {50: '50%', 75: '75%', 100: '100%', 125: '125%', 150: '150%', 200: '200%'}, defaultValue: 100, controlEventName: '', type: 'dropdown'},
+						{itemContainerId: 'group3', imageSource: imagesPathHyperlink + 'btn-zoom-out.svg', controlEventName: ''},
+						{itemContainerId: 'group3', imageSource: imagesPathHyperlink + 'btn-zoom-in.svg', controlEventName: ''},
+						{itemContainerId: 'group4', imageSource: imagesPathHyperlink + 'toolbar-btn-pan.svg', textLabel: 'Pan', controlEventName: '', type: 'toggle'},
+						{itemContainerId: 'group4', imageSource: imagesPathHyperlink + 'toolbar-btn-select-inactive.svg', textLabel: 'Select', controlEventName: '', type: 'toggle'},
+						{itemContainerId: 'group4', imageSource: imagesPathHyperlink + 'toolbar-btn-source-hyperlink.svg', textLabel: 'Set Source', controlEventName: ''},
+						{itemContainerId: 'group4', imageSource: imagesPathHyperlink + 'toolbar-btn-target-hyperlink.svg', textLabel: 'Set Target', controlEventName: ''},
+						{itemContainerId: 'group5', imageSource: imagesPathHyperlink + 'toolbar-btn-link-target.svg', textLabel: 'Link Targets', controlEventName: 'link-targets', type: 'toggle'}
+					];
+					
+					configurationData.destinationElement = document.getElementById('editorToolbar');
+					
+					toolbar.init(configurationData);
+				});
+			});
+		</script>
+	</body>
+</html>

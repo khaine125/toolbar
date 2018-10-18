@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hyperlinks editor</title>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="Expires" content="0"/>
+		<meta http-equiv="pragma" content="no-cache"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<link rel="stylesheet" href="./css/body.css"/>
+		<link rel="stylesheet" href="./css/hyperlinks_editor_default.css"/>
+	</head>
+	<body>
+		<div id="editorToolbar">
+			<div class="hyperlinks-control">
+				<div class="hyperlinks-icon"></div>
+				<div class="hyperlinks-text">All Hyperlinks</div>
+			</div>
+			<div class="pages-control">
+				<div class="pages-string">PAGES</div>
+				<div class="pages-values">
+					<input class="pages-input" type="text" />
+					<div class="total-pages">/ 3456</div>
+				</div>
+				<div class="page-buttons">
+					<div class="first-page-button-div"></div>
+					<div class="previous-page-button-div"></div>
+					<div class="next-page-button-div"></div>
+					<div class="last-page-button-div"></div>
+				</div>
+			</div>
+			<div class="zoom-control">
+				<div class="zoom-string">ZOOM</div>
+				<div class="zoom-dropdown">
+					<select>
+						<option value="50">50%</option>
+						<option value="75">75%</option>
+						<option value="100">100%</option>
+						<option value="125">125%</option>
+						<option value="150">150%</option>
+						<option value="200">200%</option>
+					</select>
+				</div>
+				<div class="zoom-buttons">
+					<div class="zoom-out-button"></div>
+					<div class="zoom-in-button"></div>
+				</div>
+			</div>
+			<div class="text-selection-control">
+				<div class="pan-button-control">
+					<div class="pan-button-icon"></div>
+					<div class="pan-button-text">Pan</div>
+				</div>
+				<div class="select-button-control">
+					<div class="select-button-icon"></div>
+					<div class="select-button-text">Select</div>
+				</div>
+				<div class="hyperlinks-string">HYPERLINKS</div>
+				<div class="hyperlinks-source-control">
+					<div class="hyperlinks-source-icon"></div>
+					<div class="hyperlinks-source-text">Set Source</div>
+				</div>
+				<div class="hyperlinks-target-control">
+					<div class="hyperlinks-target-icon"></div>
+					<div class="hyperlinks-target-text">Set Target</div>
+				</div>
+			</div>
+			<div class="link-target-control">
+				<div class="link-targets-icon"></div>
+				<div class="link-targets-string">Link Targets</div>
+			</div>
+		</div>
+		<div id="editorContainer">
+			<div id="am-primary-container"></div>
+			<div id="am-secondary-container"></div>
+		</div>
+		<script>
+			require.config({
+				baseUrl: '<%= contextPath + scriptsPath %>',
+				waitSeconds: 0
+			});
+			
+			require(["modules/hyperlinks_editor"], function(editor) {
+				var CONTEXT_PATH = '<%= contextPath %>',
+					IMAGES_PATH = '<%= contextPath + imagesPath %>';
+					
+				editor.init({
+					contextPath: CONTEXT_PATH,
+					imagesPath: IMAGES_PATH
+				});
+			});
+		</script>
+	</body>
+</html>

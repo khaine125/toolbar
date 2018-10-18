@@ -1,0 +1,233 @@
+#editorToolbar {
+	background: #f2f2f2;
+    width: 100%;
+    height: 40px;
+}
+
+ul {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+	float: left;
+	user-select: none;
+}
+
+li {
+	display: inline;
+	float: left;
+}
+
+#group1 li:hover, 
+#group2 li:nth-last-child(-n+4):hover, 
+#group3 li:nth-last-child(-n+2):hover, 
+#group4 li:hover, 
+#group5 li:hover {
+	background: darkcyan;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+#group1 li.selected,
+#group4 li:nth-child(-n+2).selected,
+#group5 li.selected {
+	background: black;
+	border-radius: 4px;
+}
+
+#group1 {
+    width: 10%;
+	height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	border-right: 1px solid black;
+}
+
+#group1 li {
+    height: 40px;
+	width: 100%;
+    position: absolute;
+}
+
+#group1 li img {
+	position: absolute;
+	top: 2px;
+	float: left;
+}
+
+#group1 li span {
+	font-family: Calibri;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: -0.3px;
+	text-align: left;
+	color: #470a68;
+	position: absolute;
+	left: 36px;
+	top: 10px;
+	white-space: nowrap;
+}
+
+#group2 {
+	width: 30%;
+	height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	border-right: 1px solid black;
+}
+
+#group2 li {
+    height: 40px;
+	width: 40px;
+	padding: 0 5px 0 0;
+}
+
+#group2 li:nth-child(1) {
+	min-width: 50px;
+	width: auto;
+}
+
+#group2 li:nth-child(3) span {
+	left: 0;
+}
+
+#group2 li img {
+    position: relative;
+	top: 12px;
+	left: 13px;
+}
+
+#group2 li span, #group3 li span {
+	font-family: Calibri;
+	font-size: 12px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #555555;
+	float: left;
+	top: 12px;
+	left: 10px;
+	position: relative;
+}
+
+#group2 li input {
+	width: 36px;
+	top: 7px;
+	position: relative;
+}
+
+#group3 {
+	width: 20%;
+	height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	border-right: 1px solid black;
+}
+
+#group3 li {
+    height: 40px;
+	width: 40px;
+}
+
+#group3 li:nth-child(1) {
+    min-width: 50px;
+	width: auto;
+}
+
+#group3 li:nth-child(2) {
+    min-width: 65px;
+	width: auto;
+}
+
+#group3 li img {
+    position: relative;
+	top: 12px;
+	left: 13px;
+}
+
+#group3 li select {
+	position: relative;
+	top: 9px;
+}
+
+#group4 {
+    width: 30%;
+	height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	border-right: 1px solid black;
+}
+
+#group4 li {
+    height: 40px;
+	padding: 0 5px;
+}
+
+#group4 li img {
+	position: relative;
+	top: 2px;
+}
+
+#group4 li span {
+	font-family: Calibri;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: -0.3px;
+	text-align: left;
+	color: #470a68;
+	top: -10.5px;
+	position: relative;
+	white-space: nowrap;
+}
+
+#group5 {
+    width: 10%;
+	height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	border-right: 1px solid black;
+}
+
+#group5 li {
+    height: 40px;
+	width: 100%;
+}
+
+#group5 li img {
+	position: absolute;
+	top: 2px;
+}
+
+#group5 li span {
+	font-family: Calibri;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: -0.3px;
+	text-align: left;
+	color: #470a68;
+	position: absolute;
+	left: 36px;
+	top: 10px;
+	white-space: nowrap;
+}

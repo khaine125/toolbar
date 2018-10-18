@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>36865E31-0E52-46C3-B655-58B6DE92B088</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="CR:-HyperLinking-Iteration-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="+HL.Modules/Toolbars/Document-v3" transform="translate(-729.000000, -11.000000)" fill="#470A68">
+            <g id="+Tools" transform="translate(296.000000, 0.000000)">
+                <g id="Zoom" transform="translate(265.000000, 0.000000)">
+                    <g id="btn-zoom_in" transform="translate(159.000000, 2.000000)">
+                        <rect id="36x36" fill-opacity="0" x="0" y="0" width="36" height="36" rx="4"></rect>
+                        <path d="M15.9999996,9 C19.8699991,9 22.9999992,12.1299999 22.9999992,15.9999996 C22.9999992,17.5699991 22.4999992,18.9999994 21.6099988,20.1899988 L22.409999,20.9999993 L22.9999992,20.9999993 L28.9999988,26.9999989 L26.9999989,28.9999988 L20.9999993,22.9999992 L20.9999993,22.409999 L20.1899988,21.6099988 C18.9999994,22.4999992 17.5699991,22.9999992 15.9999996,22.9999992 C12.1299999,22.9999992 9,19.8699991 9,15.9999996 C9,12.1299999 12.1299999,9 15.9999996,9 Z M14.9999996,11.9999998 L14.9999996,14.9999996 L11.9999998,14.9999996 L11.9999998,16.9999995 L14.9999996,16.9999995 L14.9999996,19.9999993 L16.9999995,19.9999993 L16.9999995,16.9999995 L19.9999993,16.9999995 L19.9999993,14.9999996 L16.9999995,14.9999996 L16.9999995,11.9999998 L14.9999996,11.9999998 Z" id="mdi-magnify-plus"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
